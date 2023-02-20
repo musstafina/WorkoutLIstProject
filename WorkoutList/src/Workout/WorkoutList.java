@@ -13,12 +13,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import Task.Task;
 
 public class WorkoutList extends Confirm implements RequestService {
-    private static final String DB_USERNAME = "root123";
-    private static final String DB_PASSWORD = "root";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/mydbtest";
-    Set<Task> TaskList = Collections.newSetFromMap(new ConcurrentHashMap());
+    
     Task task = new Task();
-    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydbtest", "root123", "root");
+    Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "123456");
 
     public WorkoutList() throws SQLException {
     }
@@ -73,7 +70,7 @@ public class WorkoutList extends Confirm implements RequestService {
 
     public void setTask(int id, String taskName, String urgency, String description) throws SQLException {
         this.createTask(id, taskName, urgency, description);
-        String sql = "insert into task (id, task_name, urgency, isdone, description) values(?, ?, ?, ?, ?);";
+        String sql = "insert into task (id, task_name, urgency, isDone, description) values(?, ?, ?, ?, ?);";
         PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
         preparedStatement.setInt(1, this.task.getId());
         preparedStatement.setString(2, this.task.getTask_name());
