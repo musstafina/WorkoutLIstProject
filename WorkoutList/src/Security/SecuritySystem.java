@@ -14,7 +14,8 @@ public class SecuritySystem extends Signup implements CheckPass {
     Login login = new Login();
     Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydbtest", "root123", "root");
 
-    public SecuritySystem() throws SQLException {
+   public SecuritySystem() throws SQLException {
+        this.connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
     }
 
     public boolean checkLoginAndPass(String login, String password) throws SQLException {
