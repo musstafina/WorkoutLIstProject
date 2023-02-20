@@ -8,11 +8,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SecuritySystem extends Signup implements CheckPass {
-    private static final String DB_USERNAME = "root123";
-    private static final String DB_PASSWORD = "root";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/mydbtest";
+    private static final String DB_USERNAME = "postgres";
+    private static final String DB_PASSWORD = "123456";
+    private static final String DB_URL = "jdbc:postgresql://localhost:5432/postgres";
     Login login = new Login();
-    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydbtest", "root123", "root");
+    private Connection connection;
 
    public SecuritySystem() throws SQLException {
         this.connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
